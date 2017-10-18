@@ -12,14 +12,21 @@ public class client {
         System.out.println("Enter the port no of server for connection...");
         int port_no = alpha.nextInt();
         Socket client = new client().get_socket(server_IP,port_no);
+        BufferedInputStream input_reader;
+        BufferedOutputStream output_reader;
+
         try {
-            BufferedInputStream input_reader = new BufferedInputStream(client.getInputStream());
-            BufferedOutputStream output_reader = new BufferedOutputStream(client.getOutputStream());
+            input_reader = new BufferedInputStream(client.getInputStream());
+            output_reader = new BufferedOutputStream(client.getOutputStream());
         }
         catch (IOException e){
-            System.out.println("Error in getting input stream....");
+            System.out.println("Error in getting input stream...");
         }
-        
+
+
+
+
+
 
 
 
