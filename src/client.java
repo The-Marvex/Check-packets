@@ -9,8 +9,10 @@ public class client {
         Scanner alpha = new Scanner(System.in);
         System.out.println("Enter the IP of server you want to connect to...");
         String server_IP = alpha.next();
+        server_IP = "192.168.1.101";
         System.out.println("Enter the port no of server for connection...");
         int port_no = alpha.nextInt();
+        port_no = 5500;
         Socket client = new client().get_socket(server_IP,port_no);
         BufferedInputStream input_reader;
         BufferedOutputStream output_reader;
@@ -18,19 +20,14 @@ public class client {
         try {
             input_reader = new BufferedInputStream(client.getInputStream());
             output_reader = new BufferedOutputStream(client.getOutputStream());
+            int n = input_reader.read();
+            if(n > 0){
+                System.out.println(input_reader);
+            }
         }
         catch (IOException e){
             System.out.println("Error in getting input stream...");
         }
-
-
-
-
-
-
-
-
-
     }
 
     private Socket get_socket(String server_IP, int port_no){
