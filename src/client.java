@@ -1,6 +1,4 @@
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -14,16 +12,13 @@ public class client {
         int port_no = alpha.nextInt();
         port_no = 5500;
         Socket client = new client().get_socket(server_IP,port_no);
-        BufferedInputStream input_reader;
-        BufferedOutputStream output_reader;
+        DataInputStream input_reader;
+        DataOutputStream output_reader;
 
         try {
-            input_reader = new BufferedInputStream(client.getInputStream());
-            output_reader = new BufferedOutputStream(client.getOutputStream());
-            int n = input_reader.read();
-            if(n > 0){
-                System.out.println(input_reader);
-            }
+            input_reader = new DataInputStream(client.getInputStream());
+            output_reader = new DataOutputStream(client.getOutputStream());
+            System.out.println(input_reader.readUTF());
         }
         catch (IOException e){
             System.out.println("Error in getting input stream...");

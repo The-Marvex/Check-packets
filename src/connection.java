@@ -18,10 +18,10 @@ public class connection extends Thread {
 
     private void start_conversation(Socket server_socket){
         try {
-            BufferedInputStream input_reader = new BufferedInputStream(server_socket.getInputStream());
-            BufferedOutputStream output_reader = new BufferedOutputStream(server_socket.getOutputStream());
+            DataInputStream input_reader = new DataInputStream(server_socket.getInputStream());
+            DataOutputStream output_reader = new DataOutputStream(server_socket.getOutputStream());
             System.out.println("Sending message ...");
-            output_reader.write(new String("Hello from server").getBytes());
+            output_reader.writeUTF("Hello from server");
             System.out.println("Recieved ...");
         }
 
