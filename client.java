@@ -5,20 +5,25 @@ import java.util.Scanner;
 public class client {
     public static void main(String[] args){
         Scanner alpha = new Scanner(System.in);
-        System.out.println("Enter the IP of server you want to connect to...");
-        String server_IP = alpha.next();
-        server_IP = "192.168.1.101";
-        System.out.println("Enter the port no of server for connection...");
-        int port_no = alpha.nextInt();
-        port_no = 5500;
+        String server_IP = "192.168.43.238";
+        int port_no = 5500;
         Socket client = new client().get_socket(server_IP,port_no);
-        DataInputStream input_reader;
-        DataOutputStream output_reader;
+        BufferedReader input_reader;
+        BufferedWriter output_reader;
+
 
         try {
-            input_reader = new DataInputStream(client.getInputStream());
-            output_reader = new DataOutputStream(client.getOutputStream());
-            System.out.println(input_reader.readUTF());
+            DataInputStream input_stream = new DataInputStream(client.getInputStream());
+            DataOutputStream output_stream = new DataOutputStream(client.getOutputStream());
+            BufferedReader console_reader = new BufferedReader(new InputStreamReader(System.in));
+            String msg = "";
+            while (msg!="exit"){
+                System.out.println(input_stream.readUTF());
+                msg = console_reader.readLine();
+                output_stream.writeUTF(msg);
+            }
+            client.close();
+            System.out.println("Connection terminated ...");
         }
         catch (IOException e){
             System.out.println("Error in getting input stream...");
