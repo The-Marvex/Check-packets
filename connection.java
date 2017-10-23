@@ -35,7 +35,7 @@ public class connection extends Thread {
         }
 
         catch (IOException e){
-            System.out.println("Error in connection from server side, try again...");
+            System.out.println("Error in connection from server side, try again ...");
         }
     }
 }

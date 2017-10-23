@@ -8,9 +8,6 @@ public class client {
         String server_IP = "192.168.43.238";
         int port_no = 5500;
         Socket client = new client().get_socket(server_IP,port_no);
-        BufferedReader input_reader;
-        BufferedWriter output_reader;
-
 
         try {
             DataInputStream input_stream = new DataInputStream(client.getInputStream());
@@ -42,5 +39,6 @@ public class client {
         }
         return client_socket;
     }
+
 
 }
