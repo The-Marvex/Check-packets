@@ -10,12 +10,13 @@ public class CRC {
 
     public String getCRC(String packet){
         int [] dividend = get_dividend(packet);
+        System.out.println("Dividend : ");
+        print_array(dividend);
         int append_flag = 1;
         int pointer;
         int kernel_index;
         int pivot = 0;
-        int count_val = 0;
-        int first_flag = 0;
+        int first_flag;
         while(append_flag == 1){
             pointer = pivot;
             kernel_index = 0;
@@ -29,11 +30,14 @@ public class CRC {
                 }
                 pointer++;
                 kernel_index++;
-                System.out.print("p");
+                System.out.println("pivot " + pivot);
             }
-            //System.out.println("pivot" + pivot);
-            if(pointer >= dividend.length){
+            System.out.println("pivot-distance" + (dividend.length - pivot));
+            if(kernel.length > dividend.length - pivot ){
                 append_flag = 0;
+            }
+            if(first_flag == 0){
+                pivot = pivot + kernel.length;
             }
             print_array(dividend);
             System.out.println();
@@ -52,8 +56,6 @@ public class CRC {
     }
 
     public int [] get_dividend(String packet){
-        System.out.println(packet);
-        System.out.println(kernel);
         int []  dividend = new int [packet.length() + kernel.length-1];
         int i,j;
         for(i = 0;i<packet.length();i++){
