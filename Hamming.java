@@ -45,9 +45,9 @@ public class Hamming {
             System.out.println("I ma scanning");
             k = item;
             if(item == 0){
-                System.out.println("item is 0");
+                System.out.println("item is " + item);
                 while (k < hamming_code_length){
-                    if(!contains(parity_position,item)){
+                    if(!contains(parity_position,k)){
                         System.out.println(k+" "+hamming_code[k]);
                         sum = sum + hamming_code[k];
                         k = k+2;
@@ -57,14 +57,26 @@ public class Hamming {
             }
             else if(item ==1 ){
                 System.out.println("item is 1");
+                boolean lc = true;
                 while (k < hamming_code_length){
-                    if(!contains(parity_position,item)){
-                        System.out.println(k+" "+hamming_code[k]);
-                        sum = sum + hamming_code[k];
-                        k++;
-                        System.out.println(k+" "+hamming_code[k]);
-                        sum = sum + hamming_code[k];
-                        k = k + 3;
+                    if(!contains(parity_position,k)){
+                        if((k-1) == item){
+                            System.out.println(k+" "+hamming_code[k] + "qqqw");
+                            sum = sum + hamming_code[k];
+                            k = k + item + 2;
+                        }
+                        else if(lc) {
+                            System.out.println(k+" "+hamming_code[k]);
+                            sum = sum + hamming_code[k];
+                            k++;
+                            System.out.println(k+" "+hamming_code[k]);
+                            sum = sum + hamming_code[k];
+                            lc = false;
+                        }
+                        else {
+                            k = k + item + 2;
+                            lc = true;
+                        }
                     }
                     else k++;
                 }
@@ -73,10 +85,15 @@ public class Hamming {
             else {
                 System.out.println("item is different" + item);
                 while(k < hamming_code_length){
-                    System.out.println(k+" " + hamming_code[k]);
-                    sum = sum  + hamming_code[k];
-                    if (!contains(parity_position,item)){
-                        k = k + item + 1;
+                    if(!contains(parity_position,k)){
+                        System.out.println(k+" " + hamming_code[k]);
+                        sum = sum  + hamming_code[k];
+                        if (k%item ==0 && k!=0){
+                            k = k + item + 1;
+                        }
+                        else {
+                            k++;
+                        }
                     }
                     else {
                         k = k + 1;
@@ -106,7 +123,15 @@ public class Hamming {
     }
 
     private boolean contains(int [] array,int key){
-        return Arrays.asList(array).contains(key);
+        boolean x = false;
+        for(int i=0;i<array.length;i++){
+            if(key == array[i]){
+                //System.out.println("found");
+                x = true;
+            }
+        }
+        //System.out.println(x);
+        return x;
     }
 
 

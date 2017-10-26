@@ -2,7 +2,7 @@ public class driver {
     public static void main(String [] args){
 
         Hamming hm = new Hamming();
-        hm.get_hamming_code("10011");
+        hm.get_hamming_code("10101");
         /*CRC crc = new CRC("1101");
         String pr = crc.getCRC("1011011");
         System.out.println("CRC is " +pr);*/
