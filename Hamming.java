@@ -69,9 +69,12 @@ public class Hamming {
                             System.out.println(k+" "+hamming_code[k]);
                             sum = sum + hamming_code[k];
                             k++;
-                            System.out.println(k+" "+hamming_code[k]);
-                            sum = sum + hamming_code[k];
-                            lc = false;
+                            if(k<hamming_code_length){
+                                System.out.println(k+" "+hamming_code[k]);
+                                sum = sum + hamming_code[k];
+                                lc = false;
+                            }
+
                         }
                         else {
                             k = k + item + 2;
