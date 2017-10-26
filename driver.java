@@ -1,8 +1,11 @@
 public class driver {
     public static void main(String [] args){
-        CRC crc = new CRC("1101");
+
+        Hamming hm = new Hamming();
+        hm.get_hamming_code("10011");
+        /*CRC crc = new CRC("1101");
         String pr = crc.getCRC("1011011");
-        System.out.println("CRC is " +pr);
+        System.out.println("CRC is " +pr);*/
         /*for(int i = 0;i<array.length;i++){
             System.out.println(array[i]);
         }*/
